@@ -60,7 +60,7 @@ apps = {
 
   docker-registry = {
     "name"             = "docker-registry"
-    "version"          = "1.2.2"
+    "version"          = "1.8.1"
     "chart"            = "stable/docker-registry"
     "force_update"     = "true"
     "wait"             = "false"

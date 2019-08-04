@@ -35,6 +35,13 @@ module istio_mesh {
   apps       = "${var.apps}"
 }
 
+module docker_registry {
+  source     = "../modules/cluster/docker-registry"
+  repository = "${local.repository}"
+  namespace  = "docker-registry"
+  apps       = "${var.apps}"
+}
+
 resource kubernetes_namespace dev {
   metadata {
     name = "dev"
