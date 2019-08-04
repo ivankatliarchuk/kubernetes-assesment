@@ -2,7 +2,7 @@
 
 <!-- START makefile-doc -->
 ```
-$ make help
+$ make help 
 devsetup                       DEV machine setup
 ssh-tunnel                     create ssh tunnel
 list-gce                       list GCE resoruces
@@ -11,14 +11,15 @@ infra-create-aws               Task '2.1' > Setup AWS infrastructure for K8s clu
 ssh-test                       Test ssh connection
 aws                            Task '2.1' > Setup AWS infrastructure for K8s cluster
 aws-cluster                    Task '2.2' > provision cluster on AWS
-cluster-provision              Task '3.1' Provision Jenkins on kubernetes
+aws-cluster-provision          Task 3.1, 4.2,5.1,6.1,8.1,10.1,11: Provision cluster resources
+aws-destroy                    Task '13' > reset current cluster and destroy infrastructure
 cluster-dashboard              Task
 infra-teardown-gce             Task '13' > Tear down cluster with GCE infrastructure
 ssh-jump                       Jump to any instance in network
 up                             Create local development Vagrant box
 stop                           Stoplocal development Vagrant box
 destroy                        Destroy local development Vagrant box
-validate                       Validate pre commit
+validate                       Validate pre commit 
 ```
 <!-- END makefile-doc -->
 

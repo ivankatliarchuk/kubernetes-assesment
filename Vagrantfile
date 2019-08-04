@@ -67,7 +67,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     sudo chown -R $(whoami):$(whoami) ~/.config
     sudo chown -R $(whoami):$(whoami) ~/.cache
     sudo chown -R $(whoami):$(whoami) ~/.ssh
-    pip3 install -r /vagrant/data/requirements.txt
+    pip3 install -r /vagrant/inventory/requirements.txt
   SHELL
 
   %w(.vimrc .gitconfig).each do |f|
@@ -77,7 +77,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
   end
   # Copy google cloud credentials file. TODO: encrypt it
-  config.vm.provision "file", source: ENV['GCLOUD_TF_CREDS'], destination: "/home/vagrant/.config/gcloud/#{ENV['PROJECT_ID']}-terraform-admin.json"
+  # config.vm.provision "file", source: ENV['GCLOUD_TF_CREDS'], destination: "/home/vagrant/.config/gcloud/#{ENV['PROJECT_ID']}-terraform-admin.json"
 
   config.vm.network :private_network, ip: "10.10.10.10"
   # forwarded ports only works for newly created docker contaieners

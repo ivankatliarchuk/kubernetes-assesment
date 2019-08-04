@@ -24,16 +24,20 @@ ssh-test: ## Test ssh connection
 	@bin/cluster-connect.sh
 
 aws: ## Task '2.1' > Setup AWS infrastructure for K8s cluster
-	@bin/terraform-infra.aws.sh apply
+	@bin/aws.terraform-infra.sh apply
 
 aws-cluster: ## Task '2.2' > provision cluster on AWS
-	@bin/cluster-deploy.aws.sh provision
+	@bin/aws.cluster-deploy.sh provision
+
+aws-cluster-provision: ## Task 3.1, 4.2,5.1,6.1,8.1,10.1,11: Provision cluster resources
+	@bin/aws.cluster.provision.sh apply
+
+aws-destroy: ## Task '13' > reset current cluster and destroy infrastructure
+	@bin/aws.cluster-deploy.sh provision
+	@bin/aws.erraform-infra.sh destroy
 
 gce-cluster:
 	@bin/cluster-deploy-cfg.sh gce
-
-cluster-provision: ## Task '3.1' Provision Jenkins on kubernetes
-	@bin/terraform-k8s.provision.sh apply
 
 cluster-dashboard: ## Task
 	@bin/show-dashboard.sh

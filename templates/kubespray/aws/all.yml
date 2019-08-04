@@ -8,7 +8,7 @@ etcd_data_dir: /var/lib/etcd
 bin_dir: /usr/local/bin
 
 ## External LB example config
-# apiserver_loadbalancer_domain_name: "some-dns"
+## apiserver_loadbalancer_domain_name: "some-dns"
 # loadbalancer_apiserver:
 #   address: {{ lb_dns }}
 #   port: 6443
@@ -17,11 +17,10 @@ bin_dir: /usr/local/bin
 ## And must be set port 6443
 loadbalancer_apiserver_port: 6443
 
-
 ## If loadbalancer_apiserver_healthcheck_port variable defined, enables proxy liveness check for nginx.
 # loadbalancer_apiserver_healthcheck_port: 8081 #experiment #}
 ## Set true to download and cache container
-download_container: true
+download_container: false
 
 ### OTHER OPTIONAL VARIABLES
 ## For some things, kubelet needs to load kernel modules.  For example, dynamic kernel services are needed
@@ -31,7 +30,7 @@ download_container: true
 kubelet_load_modules: true
 
 ## Internal loadbalancers for apiservers
-loadbalancer_apiserver_localhost: true
+loadbalancer_apiserver_localhost: false
 
 ## Internal loadbalancers for apiservers
 # loadbalancer_apiserver_localhost: true

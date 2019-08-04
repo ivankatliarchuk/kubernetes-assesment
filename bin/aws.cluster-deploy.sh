@@ -39,6 +39,7 @@ on_success() {
   echo "Setting up your KUBECONFIG"
   echo "export KUBECONFIG=$(pwd)/inventory/admin.conf"
   cp inventory/${run_version}/artifacts/admin.conf ${current}/inventory/admin.conf
+  sed -i -e "s/10.250.*$/${LOADBALANCER_DNS}:6443/g" ${current}/inventory/admin.conf
 }
 
 {
@@ -65,11 +66,13 @@ on_success() {
   elif [[ "$JOB_NAME" == "provision" ]]; then
     echo "provision cluster"
     ansible-playbook -i inventory/${run_version}/hosts.ini cluster.yml $command
+    on_success
   elif [[ "$JOB_NAME" == "update" ]]; then
     echo "update cluster"
     ansible-playbook -i inventory/${run_version}/hosts.ini upgrade-cluster.yml $command
     on_success
   else # PR job
     echo "job not specified. exiting"
+    sed -i -e "s/10.250.*$/${LOADBALANCER_DNS}:6443/g" ${current}/inventory/admin.conf
   fi
 }
