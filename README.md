@@ -3,21 +3,22 @@
 <!-- START makefile-doc -->
 ```
 $ make help 
-devsetup                       DEV machine setup
-ssh-tunnel                     create ssh tunnel
-list-gce                       list GCE resoruces
-infra-create-gce               Task '2.1' > Setup GCE infrastructure for K8s cluster
-infra-create-aws               Task '2.1' > Setup AWS infrastructure for K8s cluster
-ssh-test                       Test ssh connection
-aws                            Task '2.1' > Setup AWS infrastructure for K8s cluster
+aws                            -\/--\/- AWS setup -\/--\/-
+aws-infrastructure-create      Task '2.1' > Setup AWS infrastructure for K8s cluster
 aws-cluster                    Task '2.2' > provision cluster on AWS
 aws-cluster-provision          Task 3.1, 4.2,5.1,6.1,8.1,10.1,11: Provision cluster resources
 aws-destroy                    Task '13' > reset current cluster and destroy infrastructure
+gce                            -\/--\/- GCE expertimental setup -\/--\/-
+list-gce                       list GCE resoruces
+infra-create-gce               Task '2.1' > Setup GCE infrastructure for K8s cluster
+infra-teardown-gce             Task '13' > Tear down cluster with GCE infrastructure
+dashboards                     -\/--\/- Kubernetes proxies and Dashboards -\/--\/-
 dashboard-show                 Task '10' > Show dashboard with Access Token
 cicd-show                      Task '3' > Show CI/CD dashboard
 istio-show                     Task '8' > Show CI/CD dashboard
-infra-teardown-gce             Task '13' > Tear down cluster with GCE infrastructure
 ssh-jump                       Jump to any instance in network
+dashboards                     -\/--\/- Devevelopment Workspace hooks -\/--\/-
+devsetup                       DEV machine setup
 up                             Create local development Vagrant box
 stop                           Stoplocal development Vagrant box
 destroy                        Destroy local development Vagrant box
