@@ -224,3 +224,7 @@ admin.conf
 data/resources
 
 kubespray/*
+inventory/*
+!inventory/aws-infrastructure.tfvars
+!inventory/cluster-provision.tfvars
+!inventory/gce-infrastructure.tfvars
