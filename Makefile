@@ -27,7 +27,7 @@ aws: ## Task '2.1' > Setup AWS infrastructure for K8s cluster
 	@bin/terraform-infra.aws.sh apply
 
 aws-cluster: ## Task '2.1' > Setup cluster on aws
-	@bin/cluster-deploy.aws.sh
+	@bin/cluster-deploy.aws.sh update
 
 cluster-gce: ## Task '2.2' Provision kubernetes cluster for GCE with 'kubespray'
 	@bin/cluster-deploy-cfg.sh gce
@@ -53,6 +53,11 @@ stop: ## Stoplocal development Vagrant box
 
 destroy: ## Destroy local development Vagrant box
 	@vagrant destroy --force
+
+hooks:
+	@pre-commit install
+	@pre-commit gc
+	@pre-commit autoupdate
 
 validate: ## Validate pre commit
 	@pre-commit run --all-files

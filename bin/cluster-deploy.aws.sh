@@ -29,9 +29,9 @@ on_exit() {
 trap on_exit EXIT
 
 on_success() {
-  echo -e "Success for Version: $run_version. \n Copying kube config file into 'data' folder..."
+  echo -e "Success for Version: $run_version. \n Copying kube config file into 'inventory' folder..."
   echo "Setting up your KUBECONFIG"
-  echo "export KUBECONFIG=$(pwd)/data/admin.conf"
+  echo "export KUBECONFIG=$(pwd)/inventory/admin.conf"
   cp inventory/${run_version}/artifacts/admin.conf ${current}/inventory/admin.conf
 }
 
@@ -51,7 +51,7 @@ on_success() {
   cp ${current}/templates/kubespray/aws/addons.yml inventory/${run_version}/group_vars/k8s-cluster/addons.yml
   cp ${current}/templates/kubespray/aws/k8s-cluster.yml inventory/${run_version}/group_vars/k8s-cluster/k8s-cluster.yml
 
-  command="-f 20 -b --become-user=root -e cloud_provider=aws -e bootstrap_os=ubuntu -e ansible_python_interpreter=/usr/bin/python3 -e bootstrap_os=ubuntu -e ansible_python_interpreter=/usr/bin/python3 -e download_run_once=True -e kubeconfig_localhost=True -e kubectl_localhost=false"
+  command="-f 20 -b --become-user=root -e cloud_provider=aws -e bootstrap_os=ubuntu -e ansible_python_interpreter=/usr/bin/python3 -e bootstrap_os=ubuntu -e ansible_python_interpreter=/usr/bin/python3 -e kubeconfig_localhost=True -e kubectl_localhost=false"
 
   if [[ "$JOB_NAME" = "reset" ]]; then
     echo "reset cluster"
