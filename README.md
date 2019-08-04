@@ -2,7 +2,7 @@
 
 <!-- START makefile-doc -->
 ```
-$ make help 
+$ make help
 devsetup                       DEV machine setup
 ssh-tunnel                     create ssh tunnel
 list-gce                       list GCE resoruces
@@ -18,14 +18,15 @@ ssh-jump                       Jump to any instance in network
 up                             Create local development Vagrant box
 stop                           Stoplocal development Vagrant box
 destroy                        Destroy local development Vagrant box
-validate                       Validate pre commit 
+validate                       Validate pre commit
 ```
 <!-- END makefile-doc -->
 
 ## Prerequisits
 
-- [Docker](https://www.docker.com/why-docker)
+- [Docker (Optinal&Experimental setup)](https://www.docker.com/why-docker)
 - [Vagrant](https://www.vagrantup.com/)
+- [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
 
 ## Project structure / Directory Layour
 
@@ -68,6 +69,16 @@ vagrant up
 vagrant provision
 vagrant ssh
 ```
+
+### Setup AWS credentials
+
+set environment variables to work with AWS CLI
+```
+export AWS_ACCESS_KEY_ID=XXXXXXXXXX
+export AWS_SECRET_ACCESS_KEY=XXXXXXXXXX
+```
+
+### Setup Google Credentials
 
 The workspace should have all the dependencies. There is one gotcha. Google cloud require authentication.
 So at the mean time there is an explicit copy from users `~/.config/glcou` folder.

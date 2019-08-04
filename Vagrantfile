@@ -5,7 +5,7 @@
 VAGRANTFILE_API_VERSION = "2"
 # CPU and RAM can be adjusted depending on your system
 CPUCOUNT = "2"
-RAM = "6096"
+RAM = "4096"
 UBUNTUVERSION = "18.04"
 
 $script_sudo = <<SCRIPT
@@ -82,6 +82,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network :private_network, ip: "10.10.10.10"
   # forwarded ports only works for newly created docker contaieners
   config.vm.network :forwarded_port, guest: 80, host: 8081
+  config.vm.network :forwarded_port, guest: 8080, host: 8080
   config.vm.network :forwarded_port, guest: 443, host: 8443
   config.vm.network :forwarded_port, guest: 8001, host: 8001
   config.vm.network :forwarded_port, guest: 9090, host: 9090
@@ -89,22 +90,24 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network :forwarded_port, guest: 9091, host: 9091
   config.vm.network :forwarded_port, guest: 9092, host: 9092
 
-  config.vm.provider :docker do |v, override|
-    override.vm.box = "tknerr/baseimage-ubuntu-#{UBUNTUVERSION}"
-    override.vm.box_version = "1.0.0"
-    # proxy to get port forwarding working
-    v.ports = [ "10800:10800" ]
-    v.ports = [ "8080:80" ]
-    v.ports = [ "443:8443" ]
-    v.ports = [ "9090:9090" ]
-    v.ports = [ "9091:9091" ]
-  end
-
-  # config.vm.provider "virtualbox" do |v, override|
-  #   override.vm.box = "bento/ubuntu-#{UBUNTUVERSION}"
-  #   v.memory = "#{RAM}"
-  #   v.cpus = "#{CPUCOUNT}"
+  # config.vm.provider :docker do |v, override|
+  #   override.vm.box = "tknerr/baseimage-ubuntu-#{UBUNTUVERSION}"
+  #   override.vm.box_version = "1.0.0"
+  #   # proxy to get port forwarding working
+  #   v.ports = [ "10800:10800" ]
+  #   v.ports = [ "8080:80" ]
+  #   v.ports = [ "8080:8080" ]
+  #   v.ports = [ "8443:443" ]
+  #   v.ports = [ "443:8443" ]
+  #   v.ports = [ "9090:9090" ]
+  #   v.ports = [ "9091:9091" ]
   # end
+
+  config.vm.provider :virtualbox do |v, override|
+    override.vm.box = "bento/ubuntu-#{UBUNTUVERSION}"
+    v.memory = "#{RAM}"
+    v.cpus = "#{CPUCOUNT}"
+  end
 
   config.vm.post_up_message="Setup complete `vagrant ssh` to ssh into the box"
 
