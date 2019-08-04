@@ -23,7 +23,6 @@ export TF_VAR_region=${REGION}
 export TF_VAR_kub_config="${KUBECONFIG}"
 STATE="clusterprovision.tfstate"
 MODULE="${PWD}/terraform/cluster-provision"
-TF_VARS="inventory/aws-infrastructure.tfvars"
 
 # copy backend
 cp templates/backends/aws.backend.tf terraform/cluster-provision/backend.tf
@@ -37,21 +36,14 @@ terraform init \
 -reconfigure \
 -reconfigure $MODULE
 
-# terraform init \
-# -backend-config="bucket=${TF_STATE_BUCKET}" \
-# -backend-config="prefix=${REMOTE_STATE_PREFIX}" \
-# -backend=true -get=true -force-copy \
-# -reconfigure $MODULE
+terraform ${COMMAND} -auto-approve  \
+-refresh=true \
+-var-file="${PWD}/inventory/cluster-provision.tfvars" \
+-var-file="${PWD}/inventory/aws-infrastructure.tfvars" \
+$MODULE
 
-# ${COMMAND
-# terraform destroy -auto-approve  \
-# -refresh=true \
-# -var-file="${PWD}/data/cluster-provision.tfvars" \
-# -var-file="${PWD}/data/gce-infrastructure.tfvars" \
-# $MODULE
-# | landscape
-
-# kubectl top nodes
+echo "list installed applications"
+helm ls --tiller-namespace helm
 
 # helm install --namespace default stable/nginx --tiller-namespace tiller-system
 
