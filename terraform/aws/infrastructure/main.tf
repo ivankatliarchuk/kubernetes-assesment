@@ -130,4 +130,3 @@ resource aws_instance bastion {
       "SshUser", "${var.ssh_user}"
     ))}"
 }
-

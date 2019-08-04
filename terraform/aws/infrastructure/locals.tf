@@ -20,6 +20,6 @@ locals {
     Cluster                                       = "${local.cluster_name}"
     "kubernetes.io/cluster/${local.cluster_name}" = "member"
     "kubernetes.io/region"                        = "${var.region}"
-    "failure-domain.beta.kubernetes.io/region"       = "${var.region}"
+    "failure-domain.beta.kubernetes.io/region"    = "${var.region}"
   }
 }

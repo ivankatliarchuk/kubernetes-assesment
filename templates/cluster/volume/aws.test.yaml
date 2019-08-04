@@ -1,0 +1,79 @@
+---
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: topology-aware-standard
+  annotations:
+    storageclass.beta.kubernetes.io/is-default-class: "true"
+provisioner: kubernetes.io/aws-ebs
+volumeBindingMode: WaitForFirstConsumer
+parameters:
+  type: gp2
+  iopsPerGB: "10"
+  fsType: ext4
+allowedTopologies:
+- matchLabelExpressions:
+  - key: failure-domain.beta.kubernetes.io/region
+    values:
+    - us-west-2
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: storage-test
+spec:
+  storageClassName: "topology-aware-standard"
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: storage-test
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: nginx
+  template:
+    metadata:
+      labels:
+        run: nginx
+    spec:
+      volumes:
+      - name: storage
+        persistentVolumeClaim:
+          claimName: storage-test
+      containers:
+      - name: storage-test
+        image: nginx
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - mountPath: /mount-path
+          name: storage
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nodeport-test
+  namespace: default
+spec:
+  type: ClusterIP
+  selector:
+    app: nginx
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 80
+
+
+# k apply -f /vagrant/templates/cluster/volume/aws.test.yaml
+# k delete -f /vagrant/templates/cluster/volume/aws.test.yaml
+# k describe storageclass default
+# k describe storageclass slow
+# k get pods
