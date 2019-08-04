@@ -75,12 +75,12 @@ apps = {
   }
 
   istio = {
-    "name"                          = "kube-ops-view"
-    "version"                       = "0.7.0"
-    "chart"                         = "stable/kube-ops-view"
-    "force_update"                  = "true"
-    "wait"                          = "true"
-    "recreate_pods"                 = "true"
-    "deploy"                        = 1
+    "name"          = "kube-ops-view"
+    "version"       = "0.7.0"
+    "chart"         = "stable/kube-ops-view"
+    "force_update"  = "true"
+    "wait"          = "true"
+    "recreate_pods" = "true"
+    "deploy"        = 1
   }
 }

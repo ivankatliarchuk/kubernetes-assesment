@@ -32,4 +32,3 @@ cidr_block = "10.240.0.0/16"
 public_cidr_block = "10.240.0.0/20"
 
 private_cidr_block = "10.240.16.0/20"
-

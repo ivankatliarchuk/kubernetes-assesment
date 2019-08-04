@@ -2,18 +2,24 @@
 
 <!-- START makefile-doc -->
 ```
-$ make help
+$ make help 
 devsetup                       DEV machine setup
 ssh-tunnel                     create ssh tunnel
 list-gce                       list GCE resoruces
 infra-create-gce               Task '2.1' > Setup GCE infrastructure for K8s cluster
+infra-create-aws               Task '2.1' > Setup AWS infrastructure for K8s cluster
+ssh-test                       Test ssh connection
+aws                            Task '2.1' > Setup AWS infrastructure for K8s cluster
+aws-cluster                    Task '2.1' > Setup cluster on aws
 cluster-gce                    Task '2.2' Provision kubernetes cluster for GCE with 'kubespray'
+cluster-provision              Task '3.1' Provision Jenkins on kubernetes
+cluster-dashboard              Task
 infra-teardown-gce             Task '13' > Tear down cluster with GCE infrastructure
-ssh-bastion                    Test ssh to bastion
+ssh-jump                       Jump to any instance in network
 up                             Create local development Vagrant box
 stop                           Stoplocal development Vagrant box
 destroy                        Destroy local development Vagrant box
-validate                       Validate pre commit
+validate                       Validate pre commit 
 ```
 <!-- END makefile-doc -->
 
