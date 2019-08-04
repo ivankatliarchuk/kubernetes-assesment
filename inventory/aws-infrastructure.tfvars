@@ -6,6 +6,7 @@ region = "us-west-2"
 
 cluster_name = "test"
 
+# TODO: externalize, make it mandatory env variable
 admin_whitelist = ["86.1.27.129/32"]
 
 # https://www.site24x7.com/tools/ipv4-subnetcalculator.html
@@ -21,17 +22,25 @@ k8s_secure_api_port = 6443
 
 ssh_user = "ubuntu"
 
-bastion_type = "t2.small"
+# TODO: this is just to save costs
+instances = {
+  bastion = {
+    type  = "t2.small"
+    nodes = 1
+  }
 
-# cluster setup
-master_num = 3
+  master = {
+    type  = "t2.medium"
+    nodes = 1
+  }
 
-master_type = "t2.medium"
+  worker = {
+    type  = "t2.medium"
+    nodes = 2
+  }
 
-etcd_num = 3
-
-etcd_type = "t2.small"
-
-worker_num = 3
-
-worker_type = "t2.medium"
+  etcd = {
+    type  = "t2.small"
+    nodes = 1
+  }
+}

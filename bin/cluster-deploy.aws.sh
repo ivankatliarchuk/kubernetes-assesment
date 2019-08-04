@@ -17,7 +17,7 @@ fi
 
 kubespray_version=${kubespray_versionx:-v2.10.4}
 
-git submodule update --init
+git submodule update --init --recursive
 
 run_version="temp-$$"
 echo "Run Version: $run_version"
@@ -51,7 +51,7 @@ on_success() {
   cp ${current}/templates/kubespray/aws/addons.yml inventory/${run_version}/group_vars/k8s-cluster/addons.yml
   cp ${current}/templates/kubespray/aws/k8s-cluster.yml inventory/${run_version}/group_vars/k8s-cluster/k8s-cluster.yml
 
-  command="-f 20 -b --become-user=root -e cloud_provider=aws -e bootstrap_os=ubuntu -e ansible_python_interpreter=/usr/bin/python3 -e bootstrap_os=ubuntu -e ansible_python_interpreter=/usr/bin/python3 -e kubeconfig_localhost=True -e kubectl_localhost=false"
+  command="-f 20 -b --become-user=root -e cloud_provider=aws -e bootstrap_os=ubuntu -e ansible_python_interpreter=/usr/bin/python3 -e bootstrap_os=ubuntu -e ansible_python_interpreter=/usr/bin/python3"
 
   if [[ "$JOB_NAME" = "reset" ]]; then
     echo "reset cluster"

@@ -35,7 +35,7 @@ module elb {
 }
 
 resource aws_elb_attachment masters {
-  count    = "${var.master_num}"
+  count    = "${local.master["nodes"]}"
   elb      = "${module.elb.elb_api_id}"
   instance = "${element(module.master.ids, count.index)}"
 }
@@ -49,8 +49,8 @@ module iam {
 module master {
   source = "../../modules/aws/compute"
 
-  number         = "${var.master_num}"
-  instance_type  = "${var.master_type}"
+  number         = "${local.master["nodes"]}"
+  instance_type  = "${local.master["type"]}"
   cluster_name   = "${local.cluster_name}"
   role           = "master"
   ami            = "${data.aws_ami.ubuntu.id}"
@@ -71,8 +71,8 @@ module master {
 module worker {
   source = "../../modules/aws/compute"
 
-  number         = "${var.worker_num}"
-  instance_type  = "${var.worker_type}"
+  number         = "${local.worker["nodes"]}"
+  instance_type  = "${local.worker["type"]}"
   cluster_name   = "${local.cluster_name}"
   role           = "worker"
   ami            = "${data.aws_ami.ubuntu.id}"
@@ -94,8 +94,8 @@ module worker {
 module etcd {
   source = "../../modules/aws/compute"
 
-  number         = "${var.etcd_num}"
-  instance_type  = "${var.etcd_type}"
+  number         = "${local.etcd["nodes"]}"
+  instance_type  = "${local.etcd["type"]}"
   cluster_name   = "${local.cluster_name}"
   role           = "etcd"
   ami            = "${data.aws_ami.ubuntu.id}"
@@ -116,7 +116,7 @@ module etcd {
 
 resource aws_instance bastion {
   ami                         = "${data.aws_ami.ubuntu.id}"
-  instance_type               = "${var.bastion_type}"
+  instance_type               = "${local.bastion["type"]}"
   associate_public_ip_address = true
   availability_zone           = "${element(local.azs,0)}"
   subnet_id                   = "${element(module.vpc.public_subnets, 0)}"
