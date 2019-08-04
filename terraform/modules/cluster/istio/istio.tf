@@ -34,7 +34,7 @@ kiali:
   enabled: true
   dashboard:
     auth:
-      trategy: login # anonymous
+      strategy: login # anonymous
 prometheus:
   enabled: false
 global:

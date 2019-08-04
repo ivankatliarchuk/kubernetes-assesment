@@ -45,6 +45,9 @@ dashboard-show: ## Task '10' > Show dashboard with Access Token
 cicd-show: ## Task '3' > Show CI/CD dashboard
 	@bin/show.ci.sh
 
+istio-show: ## Task '8' > Show CI/CD dashboard
+	@bin/show.istio.sh
+
 infra-teardown-gce: ## Task '13' > Tear down cluster with GCE infrastructure
 	@bin/terraform-infra.sh destroy
 

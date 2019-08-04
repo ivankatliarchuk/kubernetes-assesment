@@ -43,7 +43,7 @@ apps = {
     "force_update"     = "true"
     "wait"             = "true"
     "recreate_pods"    = "true"
-    "deploy"           = 0
+    "deploy"           = 1
     "val.replicaCount" = 1
   }
 
@@ -54,7 +54,18 @@ apps = {
     "force_update"     = "true"
     "wait"             = "false"
     "recreate_pods"    = "true"
-    "deploy"           = 0
+    "deploy"           = 1
+    "val.replicaCount" = 1
+  }
+
+  docker-registry = {
+    "name"             = "docker-registry"
+    "version"          = "1.2.2"
+    "chart"            = "stable/docker-registry"
+    "force_update"     = "true"
+    "wait"             = "false"
+    "recreate_pods"    = "true"
+    "deploy"           = 1
     "val.replicaCount" = 1
   }
 }

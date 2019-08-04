@@ -15,6 +15,7 @@ aws-cluster-provision          Task 3.1, 4.2,5.1,6.1,8.1,10.1,11: Provision clus
 aws-destroy                    Task '13' > reset current cluster and destroy infrastructure
 dashboard-show                 Task '10' > Show dashboard with Access Token
 cicd-show                      Task '3' > Show CI/CD dashboard
+istio-show                     Task '8' > Show CI/CD dashboard
 infra-teardown-gce             Task '13' > Tear down cluster with GCE infrastructure
 ssh-jump                       Jump to any instance in network
 up                             Create local development Vagrant box

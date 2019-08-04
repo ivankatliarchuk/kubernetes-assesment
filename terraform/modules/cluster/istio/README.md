@@ -5,6 +5,7 @@
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | apps |  | map | n/a | yes |
+| kiali\_username | kiali username | string | `"admin"` | no |
 | namespace |  | string | n/a | yes |
 | repository |  | map | n/a | yes |
 

@@ -9,6 +9,11 @@ resource kubernetes_namespace this {
   }
 }
 
+resource random_string kiali_password {
+  length  = 16
+  special = false
+}
+
 resource kubernetes_secret kiali {
   metadata {
     name      = "kiali"
@@ -17,6 +22,11 @@ resource kubernetes_secret kiali {
     labels {
       name = "kiali"
     }
+  }
+
+  data = {
+    username   = "${var.kiali_username}"
+    passphrase = "${random_string.kiali_password.result}"
   }
 
   type = "Opaque"
