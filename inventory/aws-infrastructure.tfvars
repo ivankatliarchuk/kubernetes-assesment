@@ -36,11 +36,11 @@ instances = {
 
   worker = {
     type  = "t2.medium"
-    nodes = 2
+    nodes = 3
   }
 
   etcd = {
     type  = "t2.small"
-    nodes = 1
+    nodes = 3
   }
 }

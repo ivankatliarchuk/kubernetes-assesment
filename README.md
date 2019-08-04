@@ -11,7 +11,6 @@ infra-create-aws               Task '2.1' > Setup AWS infrastructure for K8s clu
 ssh-test                       Test ssh connection
 aws                            Task '2.1' > Setup AWS infrastructure for K8s cluster
 aws-cluster                    Task '2.2' > provision cluster on AWS
-cluster-gce                    Task '2.2' Provision kubernetes cluster for GCE with 'kubespray'
 cluster-provision              Task '3.1' Provision Jenkins on kubernetes
 cluster-dashboard              Task
 infra-teardown-gce             Task '13' > Tear down cluster with GCE infrastructure

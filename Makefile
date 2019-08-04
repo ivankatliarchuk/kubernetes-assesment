@@ -29,7 +29,7 @@ aws: ## Task '2.1' > Setup AWS infrastructure for K8s cluster
 aws-cluster: ## Task '2.2' > provision cluster on AWS
 	@bin/cluster-deploy.aws.sh provision
 
-cluster-gce: ## Task '2.2' Provision kubernetes cluster for GCE with 'kubespray'
+gce-cluster:
 	@bin/cluster-deploy-cfg.sh gce
 
 cluster-provision: ## Task '3.1' Provision Jenkins on kubernetes
