@@ -11,4 +11,5 @@ variable apps {
 locals {
   namespace  = "${var.namespace}"
   istio_init = "${var.apps["istio-init"]}"
+  istio      = "${var.apps["istio"]}"
 }
