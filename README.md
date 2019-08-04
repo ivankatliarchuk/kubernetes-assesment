@@ -13,7 +13,7 @@ aws                            Task '2.1' > Setup AWS infrastructure for K8s clu
 aws-cluster                    Task '2.2' > provision cluster on AWS
 aws-cluster-provision          Task 3.1, 4.2,5.1,6.1,8.1,10.1,11: Provision cluster resources
 aws-destroy                    Task '13' > reset current cluster and destroy infrastructure
-cluster-dashboard              Task
+dashboard-show                 Task '10' > Show dashboard with Access Token
 infra-teardown-gce             Task '13' > Tear down cluster with GCE infrastructure
 ssh-jump                       Jump to any instance in network
 up                             Create local development Vagrant box

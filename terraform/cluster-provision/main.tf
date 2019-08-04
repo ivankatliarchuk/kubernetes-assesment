@@ -8,4 +8,13 @@ module cicd {
   namespace  = "cicd"
   apps       = "${var.apps}"
   repository = "${local.repository}"
+  bucket     = "${var.bucket}"
+  region     = "${var.region}"
+}
+
+module apps_monitoring {
+  source     = "../modules/cluster/monitoring"
+  repository = "${local.repository}"
+  namespace  = "monitoring"
+  apps       = "${var.apps}"
 }

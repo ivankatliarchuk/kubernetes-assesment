@@ -20,6 +20,7 @@ helm repo add istio.io https://storage.googleapis.com/istio-release/releases/1.2
 
 export TF_VAR_project=${PROJECT_ID}
 export TF_VAR_region=${REGION}
+export TF_VAR_bucket=${AWS_STATE_BUCKET}
 export TF_VAR_kub_config="${KUBECONFIG}"
 STATE="clusterprovision.tfstate"
 MODULE="${PWD}/terraform/cluster-provision"

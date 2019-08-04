@@ -6,6 +6,7 @@
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | apps | Multiple Applications to deploy with HELM | map | n/a | yes |
+| bucket |  | string | `"Bucket where states stored"` | no |
 | kub\_config | Kube config path | string | n/a | yes |
 | prefix |  | string | n/a | yes |
 | project |  | string | n/a | yes |

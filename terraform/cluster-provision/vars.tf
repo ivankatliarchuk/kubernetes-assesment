@@ -2,6 +2,10 @@ variable region {
   description = "Cluser region, required for some apps"
 }
 
+variable bucket {
+  default = "Bucket where states stored"
+}
+
 variable prefix {}
 variable project {}
 

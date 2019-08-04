@@ -39,8 +39,8 @@ aws-destroy: ## Task '13' > reset current cluster and destroy infrastructure
 gce-cluster:
 	@bin/cluster-deploy-cfg.sh gce
 
-cluster-dashboard: ## Task
-	@bin/show-dashboard.sh
+dashboard-show: ## Task '10' > Show dashboard with Access Token
+	@bin/show.dashboard.sh
 
 infra-teardown-gce: ## Task '13' > Tear down cluster with GCE infrastructure
 	@bin/terraform-infra.sh destroy

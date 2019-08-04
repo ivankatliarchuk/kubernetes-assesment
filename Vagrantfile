@@ -79,9 +79,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Copy google cloud credentials file. TODO: encrypt it
   # config.vm.provision "file", source: ENV['GCLOUD_TF_CREDS'], destination: "/home/vagrant/.config/gcloud/#{ENV['PROJECT_ID']}-terraform-admin.json"
 
-  config.vm.network :private_network, ip: "10.10.10.10"
-  # forwarded ports only works for newly created docker contaieners
-  config.vm.network :forwarded_port, guest: 80, host: 8081
+  config.vm.network :private_network, ip: ENV['VAGRANT_PRIVATE_NETWORK']
+  # forwarded ports not working on every environment
+  config.vm.network :forwarded_port, guest: 80, host: 8082
   config.vm.network :forwarded_port, guest: 8080, host: 8080
   config.vm.network :forwarded_port, guest: 443, host: 8443
   config.vm.network :forwarded_port, guest: 8001, host: 8001
