@@ -27,3 +27,25 @@ module vulnerability_scanning {
   prefix     = "${var.prefix}"
   apps       = "${var.apps}"
 }
+
+resource kubernetes_namespace dev {
+  metadata {
+    name = "dev"
+
+    labels {
+      name        = "dev"
+      description = "dev-environment"
+    }
+  }
+}
+
+resource kubernetes_namespace stage {
+  metadata {
+    name = "stage"
+
+    labels {
+      name        = "stage"
+      description = "stage-environment"
+    }
+  }
+}
