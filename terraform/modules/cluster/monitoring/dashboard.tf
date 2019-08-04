@@ -48,6 +48,10 @@ EOF
     name  = "labels.kubernetes\\.io/cluster-service"
     value = "true"
   }
+
+  depends_on = [
+    "kubernetes_namespace.this",
+  ]
 }
 
 resource kubernetes_cluster_role_binding kubernetes_dashboard {

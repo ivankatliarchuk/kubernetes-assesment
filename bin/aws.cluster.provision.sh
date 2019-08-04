@@ -28,6 +28,7 @@ MODULE="${PWD}/terraform/cluster-provision"
 on_exit() {
   rm terraform/cluster-provision/backend.tf
   rm terraform/cluster-provision/${REGION}.standard-storage.yaml
+  rm terraform/cluster-provision/${REGION}.*
   echo "list installed applications"
   helm ls --tiller-namespace helm
 }

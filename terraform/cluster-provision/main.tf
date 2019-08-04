@@ -18,3 +18,12 @@ module apps_monitoring {
   namespace  = "monitoring"
   apps       = "${var.apps}"
 }
+
+module vulnerability_scanning {
+  source     = "../modules/cluster/scanners"
+  repository = "${local.repository}"
+  namespace  = "scanners"
+  project    = "${var.project}"
+  prefix     = "${var.prefix}"
+  apps       = "${var.apps}"
+}

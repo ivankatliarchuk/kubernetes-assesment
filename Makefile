@@ -42,6 +42,9 @@ gce-cluster:
 dashboard-show: ## Task '10' > Show dashboard with Access Token
 	@bin/show.dashboard.sh
 
+cicd-show: ## Task '3' > Show CI/CD dashboard
+	@bin/show.ci.sh
+
 infra-teardown-gce: ## Task '13' > Tear down cluster with GCE infrastructure
 	@bin/terraform-infra.sh destroy
 

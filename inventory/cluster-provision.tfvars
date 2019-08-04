@@ -24,4 +24,15 @@ apps = {
     "val.resources.limits.cpu"      = "100m"
     "val.resources.limits.memory"   = "100Mi"
   }
+
+  anchore = {
+    "name"             = "acnhore"
+    "version"          = "1.2.0"
+    "chart"            = "stable/anchore-engine"
+    "force_update"     = "true"
+    "wait"             = "false"
+    "recreate_pods"    = "true"
+    "deploy"           = 1
+    "val.replicaCount" = 1
+  }
 }
