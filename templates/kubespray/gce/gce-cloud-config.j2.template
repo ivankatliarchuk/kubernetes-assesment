@@ -1,0 +1,7 @@
+[Global]
+project-id = {{ project }}
+network-project-id = {{ project }}
+network-name = {{ prefix }}-network
+subnetwork-name = {{ prefix }}-private
+node-tags = node
+node-instance-prefix = {{ prefix }}
