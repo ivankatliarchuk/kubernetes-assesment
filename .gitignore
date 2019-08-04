@@ -223,7 +223,6 @@ admin.conf
 */hosts.ini.latest
 data/resources
 
-kubespray/*
 inventory/*
 !inventory/aws-infrastructure.tfvars
 !inventory/cluster-provision.tfvars

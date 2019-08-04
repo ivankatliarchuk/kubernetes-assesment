@@ -26,6 +26,7 @@ STATE="clusterprovision.tfstate"
 MODULE="${PWD}/terraform/cluster-provision"
 
 on_exit() {
+  set +e
   rm terraform/cluster-provision/backend.tf
   rm terraform/cluster-provision/${REGION}.standard-storage.yaml
   rm terraform/cluster-provision/${REGION}.*
