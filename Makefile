@@ -33,7 +33,8 @@ aws-cluster-provision: ## Task 3.1, 4.2,5.1,6.1,8.1,10.1,11: Provision cluster r
 	@bin/aws.cluster.provision.sh apply
 
 aws-destroy: ## Task '13' > reset current cluster and destroy infrastructure
-	@bin/aws.cluster-deploy.sh provision
+	@bin/aws.cluster.provision.sh destroy
+	@bin/aws.cluster-deploy.sh reset
 	@bin/aws.erraform-infra.sh destroy
 
 gce-cluster:
