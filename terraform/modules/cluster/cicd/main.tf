@@ -10,6 +10,18 @@ resource helm_release jenkins {
   recreate_pods = "${local.jenkins["recreate_pods"]}"
 
   values = [<<EOF
+master:
+  numExecutors: 2
+  serviceType: ClusterIP
+  installPlugins:
+    - kubernetes:1.18.1
+    - workflow-job:2.33
+    - workflow-aggregator:2.6
+    - credentials-binding:1.19
+    - git:3.11.0
+  sidecars:
+    configAutoReload:
+      enabled: true
 backup:
   enabled: true
   componentName: "jenkinsbackup"
