@@ -24,8 +24,21 @@ export TF_VAR_kub_config="${KUBECONFIG}"
 STATE="clusterprovision.tfstate"
 MODULE="${PWD}/terraform/cluster-provision"
 
+on_exit() {
+  rm terraform/cluster-provision/backend.tf
+  rm terraform/cluster-provision/${REGION}.standard-storage.yaml
+  echo "list installed applications"
+  helm ls --tiller-namespace helm
+}
+trap on_exit EXIT
+
 # copy backend
-cp templates/backends/aws.backend.tf terraform/cluster-provision/backend.tf
+cp terraform/commons/aws.backend.tf terraform/cluster-provision/backend.tf
+# terraform kubernetes not yet support storages
+cp terraform/commons/aws.standard-storage.yaml terraform/cluster-provision/${REGION}.standard-storage.yaml
+# replace REGION
+sed -i -e "s/aws_region/${REGION}/g" terraform/cluster-provision/${REGION}.standard-storage.yaml
+kubectl apply -f terraform/cluster-provision/${REGION}.standard-storage.yaml
 
 terraform init \
 -backend-config="bucket=${AWS_STATE_BUCKET}" \
@@ -42,8 +55,6 @@ terraform ${COMMAND} -auto-approve  \
 -var-file="${PWD}/inventory/aws-infrastructure.tfvars" \
 $MODULE
 
-echo "list installed applications"
-helm ls --tiller-namespace helm
 
 # helm install --namespace default stable/nginx --tiller-namespace tiller-system
 
