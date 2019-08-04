@@ -28,6 +28,13 @@ module vulnerability_scanning {
   apps       = "${var.apps}"
 }
 
+module istio_mesh {
+  source     = "../modules/cluster/istio"
+  repository = "${local.repository}"
+  namespace  = "istio-system"
+  apps       = "${var.apps}"
+}
+
 resource kubernetes_namespace dev {
   metadata {
     name = "dev"

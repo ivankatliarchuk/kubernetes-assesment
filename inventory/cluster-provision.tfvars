@@ -35,4 +35,15 @@ apps = {
     "deploy"           = 1
     "val.replicaCount" = 1
   }
+
+  istio-init = {
+    "name"             = "istio-init"
+    "version"          = "1.2.2"
+    "chart"            = "istio.io/istio-init"
+    "force_update"     = "true"
+    "wait"             = "true"
+    "recreate_pods"    = "true"
+    "deploy"           = 1
+    "val.replicaCount" = 1
+  }
 }
