@@ -72,3 +72,16 @@ resource local_file hosts {
   sensitive_content = "${data.template_file.inventory.rendered}"
   filename          = "${var.inventory_path}/hosts.ini"
 }
+
+data template_file resources {
+  template = "${file("${path.module}/templates/resources")}"
+
+  vars {
+    elb_api_fqdn = "${module.elb.elb_api_fqdn}"
+  }
+}
+
+resource local_file resources {
+  sensitive_content = "${data.template_file.resources.rendered}"
+  filename          = "${var.inventory_path}/resources"
+}

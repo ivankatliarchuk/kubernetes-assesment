@@ -26,7 +26,7 @@ ssh-test: ## Test ssh connection
 aws: ## Task '2.1' > Setup AWS infrastructure for K8s cluster
 	@bin/terraform-infra.aws.sh apply
 
-aws-cluster: ## Task '2.1' > Setup cluster on aws
+aws-cluster: ## Task '2.2' > provision cluster on AWS
 	@bin/cluster-deploy.aws.sh provision
 
 cluster-gce: ## Task '2.2' Provision kubernetes cluster for GCE with 'kubespray'

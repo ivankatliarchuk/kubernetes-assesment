@@ -6,7 +6,9 @@ set -euo pipefail
 
 current=$(pwd)
 eval "$(ssh-agent)"
-JOB_NAME=${1}
+
+JOB_NAME=${1:-none}
+
 if [[ "$OSTYPE" == "darwin"* ]]; then
   # ssh-add -D
   ssh-add -K ${current}/inventory/cust_id_rsa
@@ -15,9 +17,13 @@ else
   ssh-add ${current}/inventory/cust_id_rsa
 fi
 
-kubespray_version=${kubespray_versionx:-v2.10.4}
+# kubespray_version=${kubespray_versionx:-v2.10.4}
 
-git submodule update --init --recursive
+# git submodule update --init --recursive
+
+set +a
+source ./inventory/resources
+set -a
 
 run_version="temp-$$"
 echo "Run Version: $run_version"
@@ -47,7 +53,8 @@ on_success() {
   cp ${current}/inventory/ssh-config.conf ./ssh-config.custom.conf
   cp ${current}/templates/kubespray/ansible.cfg ./ansible.cfg
 
-  cp ${current}/templates/kubespray/aws/all.yml inventory/${run_version}/group_vars/all/all.yml
+  jq -n --arg lb_dns "$LOADBALANCER_DNS" '{ "lb_dns": $lb_dns  }' | \
+    jinja2 ${current}/templates/kubespray/aws/all.yml.j2 > inventory/${run_version}/group_vars/all/all.yml
   cp ${current}/templates/kubespray/aws/addons.yml inventory/${run_version}/group_vars/k8s-cluster/addons.yml
   cp ${current}/templates/kubespray/aws/k8s-cluster.yml inventory/${run_version}/group_vars/k8s-cluster/k8s-cluster.yml
 

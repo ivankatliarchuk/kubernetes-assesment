@@ -1,4 +1,0 @@
-apiserver_loadbalancer_domain_name: ${apiserver_loadbalancer_domain_name}
-loadbalancer_apiserver:
-  address: ${address}
-  port: ${port}

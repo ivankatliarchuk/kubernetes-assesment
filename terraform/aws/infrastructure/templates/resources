@@ -1,0 +1,1 @@
+LOADBALANCER_DNS="${elb_api_fqdn}"

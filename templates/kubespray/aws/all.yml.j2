@@ -8,14 +8,15 @@ etcd_data_dir: /var/lib/etcd
 bin_dir: /usr/local/bin
 
 ## External LB example config
-## apiserver_loadbalancer_domain_name: "elb.some.domain"
-# loadbalancer_apiserver:
-#   address: {{ lb_ip }}
-#   port: 6443
+apiserver_loadbalancer_domain_name: {{ lb_dns }}
+loadbalancer_apiserver:
+  address: {{ lb_dns }}
+  port: 6443
 
 ## Local loadbalancer should use this port
 ## And must be set port 6443
 loadbalancer_apiserver_port: 6443
+
 
 ## If loadbalancer_apiserver_healthcheck_port variable defined, enables proxy liveness check for nginx.
 # loadbalancer_apiserver_healthcheck_port: 8081 #experiment #}
@@ -30,7 +31,7 @@ download_container: true
 kubelet_load_modules: true
 
 ## Internal loadbalancers for apiservers
-loadbalancer_apiserver_localhost: true
+loadbalancer_apiserver_localhost: false
 
 ## Internal loadbalancers for apiservers
 # loadbalancer_apiserver_localhost: true
